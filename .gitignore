@@ -1,0 +1,26 @@
+# Backend
+backend/target/
+*.class
+*.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local secrets
+.env
+.env.*
+
+# Database backups (contain personal data and password hashes)
+backups/
+
+# Local run/error output
+backend/*-error.txt

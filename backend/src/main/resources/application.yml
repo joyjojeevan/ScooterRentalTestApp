@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: scooter-rent-kandy
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/scooter_rent_kandy}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc.time_zone: Asia/Colombo
+  flyway:
+    enabled: true
+    # db/vendor/{vendor} holds the few migrations whose SQL differs between PostgreSQL and H2 (used by tests).
+    locations: classpath:db/migration,classpath:db/vendor/{vendor}
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+app:
+  jwt:
+    # Override in any shared environment. Must be at least 32 bytes.
+    secret: ${JWT_SECRET:local-dev-secret-change-me-please-0123456789abcdef}
+    expiration-minutes: 720
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  seed:
+    enabled: ${SEED_DATA:true}
+  billing:
+    currency: LKR
+  payments:
+    # Stripe-shaped gateway. "mock" simulates Stripe locally; a real Stripe gateway would be a new provider.
+    provider: mock
+    # Signs and verifies webhook deliveries (Stripe-Signature header). Override outside local dev.
+    webhook-secret: ${PAYMENTS_WEBHOOK_SECRET:whsec_local_mock_only}
+  maps:
+    # Distance from GPS logs. "local" = Haversine stand-in for the Google Maps Distance Matrix API.
+    provider: local
+  notifications:
+    provider: mock
+  gps:
+    provider: mock
+    simulator-enabled: ${GPS_SIMULATOR:true}
+    simulator-interval-ms: 30000
+    device-api-key: ${GPS_DEVICE_API_KEY:local-device-key}
+    # SDS 8.3: GPS logs are retained for 6 months, then purged by a daily job.
+    retention-months: 6
