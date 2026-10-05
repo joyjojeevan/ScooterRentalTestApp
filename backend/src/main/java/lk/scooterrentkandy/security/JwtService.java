@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Optional;
 import javax.crypto.SecretKey;
 import lk.scooterrentkandy.config.AppProperties;
-import lk.scooterrentkandy.user.User;
+import lk.scooterrentkandy.models.User;
 import org.springframework.stereotype.Service;
 
 @Service

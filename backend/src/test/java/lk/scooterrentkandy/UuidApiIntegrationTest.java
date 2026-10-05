@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 import lk.scooterrentkandy.config.AppProperties;
-import lk.scooterrentkandy.config.DataSeeder;
+import lk.scooterrentkandy.services.DataSeeder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

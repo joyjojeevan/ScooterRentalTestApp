@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import lk.scooterrentkandy.gps.GpsRetentionJob;
+import lk.scooterrentkandy.services.GpsRetentionJob;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

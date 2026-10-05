@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lk.scooterrentkandy.config.DataSeeder;
+import lk.scooterrentkandy.services.DataSeeder;
 import lk.scooterrentkandy.support.MutableClock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

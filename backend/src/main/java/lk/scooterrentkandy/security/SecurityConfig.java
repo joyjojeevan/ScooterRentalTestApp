@@ -2,8 +2,8 @@ package lk.scooterrentkandy.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.Instant;
-import lk.scooterrentkandy.common.GlobalExceptionHandler.ErrorResponse;
 import lk.scooterrentkandy.config.AppProperties;
+import lk.scooterrentkandy.dto.ErrorResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

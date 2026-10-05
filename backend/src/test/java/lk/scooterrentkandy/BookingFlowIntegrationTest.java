@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import lk.scooterrentkandy.config.DataSeeder;
+import lk.scooterrentkandy.services.DataSeeder;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 

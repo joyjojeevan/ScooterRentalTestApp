@@ -127,19 +127,17 @@ Content-Type: application/json
 
 ```
 backend/src/main/java/lk/scooterrentkandy/
-  booking/       bookings, pricing, lifecycle, scheduled jobs
-  billing/       invoices
-  contract/      rental agreement generation & signing
-  gear/          camping gear inventory & availability
-  gps/           tracking, simulator, speed alerts
-  maintenance/   service/repair records, auto-scheduling
-  notification/  in-app + outbound messages
-  payment/       gateway abstraction, payment ledger
-  report/        dashboard, summaries, CSV
-  scooter/       fleet
-  security/      JWT auth, roles (USER, ADMIN, SUPER_ADMIN)
-  user/          accounts, profiles, admin customer management
-  config/        properties, demo data seeder
+  controllers/   REST endpoints only; delegate to services, return DTOs
+  services/      business logic: bookings, pricing, payments, billing, GPS, maintenance,
+                 notifications, reports, scheduled jobs, payment/SMS/distance providers, demo data seeder
+  repository/    Spring Data JPA repositories
+  models/        JPA entities and their enums
+  dto/           request/response records (grouped per area, e.g. BookingDtos)
+  mappers/       entity -> DTO conversion
+  security/      JWT auth, roles (USER, ADMIN, SUPER_ADMIN), Spring Security config
+  config/        typed application properties, clock
+  exception/     ApiException and the global error handler
+backend/src/main/java/db/migration/   Java Flyway migrations (V10 UUID keys); SQL ones are in resources
 frontend/src/
   pages/         customer pages
   pages/admin/   admin console

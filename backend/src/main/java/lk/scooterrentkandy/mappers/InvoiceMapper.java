@@ -1,0 +1,29 @@
+package lk.scooterrentkandy.mappers;
+
+import java.util.List;
+import lk.scooterrentkandy.dto.BillingDtos.InvoiceLineResponse;
+import lk.scooterrentkandy.dto.BillingDtos.InvoiceResponse;
+import lk.scooterrentkandy.models.Invoice;
+import lk.scooterrentkandy.models.Payment;
+
+public final class InvoiceMapper {
+
+    private InvoiceMapper() {
+    }
+
+    /** {@code payment}: the booking's payment, for its status and the unpaid balance of a FINAL invoice. */
+    public static InvoiceResponse toResponse(Invoice i, boolean withLines, Payment payment) {
+        var b = i.getBooking();
+        List<InvoiceLineResponse> lines = withLines
+                ? i.getLines().stream()
+                        .map(l -> new InvoiceLineResponse(l.getDescription(), l.getQuantity(), l.getUnitPrice(),
+                                l.getAmount()))
+                        .toList()
+                : List.of();
+        return new InvoiceResponse(i.getId(), i.getInvoiceNumber(), b.getId(), b.getReference(),
+                b.getCustomer().getFullName(), b.getCustomer().getEmail(), i.getKind(), i.getStatus(),
+                payment == null ? null : payment.getStatus(),
+                payment != null && i.getKind() == Invoice.Kind.FINAL ? payment.getBalanceDue() : null,
+                i.getCurrency(), i.getSubtotal(), i.getTax(), i.getTotal(), i.getIssuedAt(), lines);
+    }
+}
